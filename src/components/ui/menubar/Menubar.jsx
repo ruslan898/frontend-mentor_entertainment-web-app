@@ -6,22 +6,15 @@ import navTV from '/src/assets/icon-nav-tv-series.svg';
 import navBookmark from '/src/assets/icon-nav-bookmark.svg';
 import avatar from '/src/assets/image-avatar.png';
 
-
 export default function Menubar() {
-  console.log(styles);
-  const {menubar, logo, 'menu-item': menuItem, profile } = styles
-
+  const { menubar, logo, 'menu-item': menuItem, profile } = styles;
 
   return (
     <nav className={menubar}>
       <img src={logoIcon} alt="Logo" className={logo} />
       <ul className={styles.menu}>
         <li>
-          <button
-            type="button"
-            className={menuItem}
-            aria-label="Homepage link"
-          >
+          <button type="button" className={menuItem} aria-label="Homepage link">
             <img src={navHome} alt="Homepage icon" />
           </button>
         </li>
@@ -53,7 +46,7 @@ export default function Menubar() {
           </button>
         </li>
       </ul>
-      <button className={profile} aria-label='User profile'>
+      <button className={profile} aria-label="User profile">
         <img src={avatar} alt="Profile avatar" />
       </button>
     </nav>

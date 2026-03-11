@@ -1,0 +1,49 @@
+@use '/src/sass/variables.scss' as *;
+@use '/src/sass/mixins.scss' as *;
+
+.searchbar {
+  display: flex;
+  gap: 16px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-input {
+    max-width: 600px;
+    padding-bottom: 7px;
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid transparent;
+    color: $white;
+    @include text-preset-2-mobile;
+
+    &:focus {
+      border-color: $blue-500;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .searchbar {
+    gap: 24px;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+    &-input {
+      @include text-preset-2-light;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .searchbar {
+    gap: 32px;
+  }
+}
