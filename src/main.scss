@@ -35,5 +35,12 @@ img {
 }
 
 body {
+  color: $white;
   font-family: "Outfit", sans-serif;
+  background-color: $blue-950;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }

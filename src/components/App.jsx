@@ -1,5 +1,13 @@
+import Menubar from './ui/menubar/Menubar';
 import styles from './App.module.scss'
 
 export default function App() {
-  return;
+  const {app} = styles
+
+  return (
+    <div className={app}>
+      <Menubar />
+
+    </div>
+  )
 }
