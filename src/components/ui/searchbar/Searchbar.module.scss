@@ -2,6 +2,7 @@
 @use '/src/sass/mixins.scss' as *;
 
 .searchbar {
+  padding: 0 16px;
   display: flex;
   gap: 16px;
 
@@ -29,6 +30,7 @@
 
 @media (min-width: 768px) {
   .searchbar {
+    padding: 0 25px;
     gap: 24px;
 
     img {
@@ -44,6 +46,7 @@
 
 @media (min-width: 1024px) {
   .searchbar {
+    padding: 0;
     gap: 32px;
   }
 }

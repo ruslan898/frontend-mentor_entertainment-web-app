@@ -1,14 +1,15 @@
 import { useWindowWidth } from './hooks/useWindowWidth.js';
 import Menubar from './ui/menubar/Menubar';
 import Searchbar from './ui/searchbar/Searchbar.jsx';
+import ContentGrid from './ui/contentGrid/ContentGrid.jsx';
 import styles from './App.module.scss';
 
 export default function App() {
-  const { app, header, 'main-content': mainContent, sidebar, box } = styles;
+  const { app, header, 'main-content': mainContent, sidebar } = styles;
   const windowWidth = useWindowWidth();
 
   return (
-    <div className={app}>
+    <main className={app}>
       {windowWidth < 1024 ? (
         <header className={header}>
           <Menubar />
@@ -18,11 +19,11 @@ export default function App() {
           <Menubar />
         </aside>
       )}
-      <main className={mainContent}>
+      <div className={mainContent}>
         <Searchbar />
-        <div className={box}></div>
-        <div className={box}></div>
-      </main>
-    </div>
+        <ContentGrid variant="trending" />
+        <ContentGrid />
+      </div>
+    </main>
   );
 }
