@@ -27,6 +27,17 @@
     &-item {
       width: 16px;
       height: 16px;
+
+      &.active {
+        .menu-icon path {
+          fill: $white;
+        }
+      }
+    }
+
+    &-icon {
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -51,6 +62,11 @@
       gap: 32px;
 
       &-item {
+        width: 20px;
+        height: 20px;
+      }
+
+      &-icon {
         width: 20px;
         height: 20px;
       }

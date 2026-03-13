@@ -8,11 +8,11 @@
 }
 
 .trending-grid {
-  padding-right: 0;
   grid-template-columns: repeat(5, 240px);
   grid-template-rows: repeat(1, minmax(140px, auto));
   gap: 16px;
   overflow-x: auto;
+  scrollbar-width: thin;
   // scrollbar-width: none;
   // -ms-overflow-style: none;
 }
@@ -20,12 +20,6 @@
 // .trending-grid::-webkit-scrollbar {
 //   display: none;
 // }
-
-.trend {
-  width: 100%;
-  height: 100%;
-  background-color: bisque;
-}
 
 @media (min-width: 768px) {
   .content-grid {
@@ -35,7 +29,7 @@
   }
 
   .trending-grid {
-    padding-left: 25px;
+    padding: 0 25px;
     grid-template-columns: repeat(5, 470px);
     grid-template-rows: repeat(1, minmax(230px, auto));
     gap: 40px;
@@ -52,5 +46,9 @@
     padding-right: 36px;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px 40px;
+  }
+
+  .trending-grid {
+    padding-right: 36px;
   }
 }

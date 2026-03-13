@@ -1,29 +1,19 @@
-import { useWindowWidth } from './hooks/useWindowWidth.js';
-import Menubar from './ui/menubar/Menubar';
-import Searchbar from './ui/searchbar/Searchbar.jsx';
-import ContentGrid from './ui/contentGrid/ContentGrid.jsx';
-import styles from './App.module.scss';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './layout/Layout';
+import Homepage from '../pages/Homepage';
+import Movies from '../pages/Movies';
+import TVSeries from '../pages/TVSeries';
+import Bookmarked from '../pages/Bookmarked';
 
 export default function App() {
-  const { app, header, 'main-content': mainContent, sidebar } = styles;
-  const windowWidth = useWindowWidth();
-
   return (
-    <main className={app}>
-      {windowWidth < 1024 ? (
-        <header className={header}>
-          <Menubar />
-        </header>
-      ) : (
-        <aside className={sidebar}>
-          <Menubar />
-        </aside>
-      )}
-      <div className={mainContent}>
-        <Searchbar />
-        <ContentGrid variant="trending" />
-        <ContentGrid />
-      </div>
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Homepage />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="tv-series" element={<TVSeries />} />
+        <Route path="bookmarked" element={<Bookmarked />} />
+      </Route>
+    </Routes>
   );
 }

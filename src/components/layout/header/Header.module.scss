@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+  .header {
+    padding: 23px 25px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    padding-bottom: 32px;
+    display: flex;
+  }
+}
