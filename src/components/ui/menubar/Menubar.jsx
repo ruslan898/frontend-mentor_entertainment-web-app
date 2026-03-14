@@ -25,6 +25,7 @@ export default function Menubar() {
         <li>
           <NavLink
             to="/"
+            end
             className={({ isActive }) => clsx(menuItem, isActive && active)}
             aria-label="Homepage link"
           >
@@ -33,7 +34,7 @@ export default function Menubar() {
         </li>
         <li>
           <NavLink
-            to="movies"
+            to="/movies"
             className={({ isActive }) => clsx(menuItem, isActive && active)}
             aria-label="Movies page link"
           >
@@ -42,7 +43,7 @@ export default function Menubar() {
         </li>
         <li>
           <NavLink
-            to="tv-series"
+            to="/tv-series"
             className={({ isActive }) => clsx(menuItem, isActive && active)}
             aria-label="TV series page link"
           >
@@ -51,7 +52,7 @@ export default function Menubar() {
         </li>
         <li>
           <NavLink
-            to="bookmarked"
+            to="/bookmarked"
             className={({ isActive }) => clsx(menuItem, isActive && active)}
             aria-label="Bookmark page link"
           >

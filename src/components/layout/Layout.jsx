@@ -1,24 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Outlet } from 'react-router-dom';
+import contentData from '../../data.json';
 import Header from './header/Header';
 import Searchbar from '../ui/searchbar/Searchbar';
 import styles from './Layout.module.scss';
 
 export default function Layout() {
   const { app, 'main-content': mainContent } = styles;
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(() =>
+    contentData.map((item) => ({ ...item, id: nanoid() })),
+  );
   const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('/src/data.json');
-      const data = await res.json();
-      setData(() => data.map((item) => ({ ...item, id: nanoid() })));
-    }
-
-    fetchData();
-  }, []);
 
   function toggleBookmarked(id) {
     setData((prevVal) => {

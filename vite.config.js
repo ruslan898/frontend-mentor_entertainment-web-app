@@ -8,4 +8,5 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  base: '/frontend-mentor_entertainment-web-app/',
 });
