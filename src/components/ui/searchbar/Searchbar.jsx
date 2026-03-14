@@ -5,7 +5,7 @@ export default function Searchbar({handleSearch, searchVal}) {
   const { searchbar, 'searchbar-input': searchbarInput } = styles;
 
   return (
-    <form className={searchbar}>
+    <div className={searchbar}>
       <img src={searchIcon} alt="Search icon" />
       <input
         type="text"
@@ -15,6 +15,6 @@ export default function Searchbar({handleSearch, searchVal}) {
         onChange={handleSearch}
         value={searchVal}
       />
-    </form>
+    </div>
   );
 }

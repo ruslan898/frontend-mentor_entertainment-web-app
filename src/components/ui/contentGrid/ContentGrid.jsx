@@ -5,22 +5,25 @@ export default function ContentGrid({ variant, children }) {
   const { 'content-grid': contentGrid, 'trending-grid': trendingGrid } = styles;
 
   const ref = useRef(null);
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  const drag = useRef({
+    isDown: false,
+    startX: 0,
+    scrollLeft: 0
+  })
+
 
   const handleMouseDown = (e) => {
-    isDown = true;
-    startX = e.pageX - ref.current.offsetLeft;
-    scrollLeft = ref.current.scrollLeft;
+    drag.current.isDown = true;
+    drag.current.startX = e.pageX - ref.current.offsetLeft;
+    drag.current.scrollLeft = ref.current.scrollLeft;
   };
 
   const handleMouseMove = (e) => {
-    if (!isDown) return;
+    if (!drag.current.isDown) return;
 
     const x = e.pageX - ref.current.offsetLeft;
-    const walk = x - startX;
-    ref.current.scrollLeft = scrollLeft - walk;
+    const walk = x - drag.current.startX;
+    ref.current.scrollLeft = drag.current.scrollLeft - walk;
   };
 
   if (variant === 'trending') {
@@ -30,8 +33,8 @@ export default function ContentGrid({ variant, children }) {
         ref={ref}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
-        onMouseUp={() => (isDown = false)}
-        onMouseLeave={() => (isDown = false)}
+        onMouseUp={() => (drag.current.isDown = false)}
+        onMouseLeave={() => (drag.current.isDown = false)}
       >
         {Children.map(children, (child) => (
           <li>{cloneElement(child, { variant: 'trending' })}</li>

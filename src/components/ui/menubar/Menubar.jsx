@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Menubar.module.scss';
 import logoIcon from '/src/assets/logo.svg';
@@ -20,7 +20,9 @@ export default function Menubar() {
 
   return (
     <nav className={menubar}>
-      <img src={logoIcon} alt="Logo" className={logo} />
+      <Link to="/">
+        <img src={logoIcon} alt="Logo" className={logo} />
+      </Link>
       <ul className={styles.menu}>
         <li>
           <NavLink
@@ -60,7 +62,7 @@ export default function Menubar() {
           </NavLink>
         </li>
       </ul>
-      <button className={profile} aria-label="User profile">
+      <button type="button" className={profile} aria-label="User profile">
         <img src={avatar} alt="Profile avatar" />
       </button>
     </nav>

@@ -39,7 +39,7 @@ export default function Layout() {
     <div className={app}>
       <Header />
       <main className={mainContent}>
-        <Searchbar handleSearch={handleSearch} />
+        <Searchbar handleSearch={handleSearch} searchVal={search} />
         <Outlet context={{ data, toggleBookmarked, search, filterSearch }} />
       </main>
     </div>
