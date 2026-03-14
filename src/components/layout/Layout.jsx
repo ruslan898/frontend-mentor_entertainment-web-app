@@ -36,7 +36,7 @@ export default function Layout() {
   }
 
   return (
-    <div className={app} searchVal={search}>
+    <div className={app}>
       <Header />
       <main className={mainContent}>
         <Searchbar handleSearch={handleSearch} />
