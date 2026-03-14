@@ -31,18 +31,21 @@
     @include text-preset-5-mobile;
   }
   .title {
+    position: relative;
     @include text-preset-3-mobile;
   }
 }
 
 .img-box {
+  position: relative;
   width: 100%;
   height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
 
   & > img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
     object-fit: cover;
   }
 }
@@ -93,15 +96,77 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.2s all;
 
-  img {
+  &:hover {
+    background-color: $white;
+
+    .bookmark-empty path {
+      stroke: black;
+    }
+
+    .bookmark-full path {
+      fill: black;
+    }
+  }
+
+  .bookmark-empty path,
+  .bookmark-full path {
+    transition: 0.2s all;
+  }
+
+  img,
+  svg {
     max-width: 100%;
     max-height: 100%;
   }
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+
+  &-btn {
+    min-width: 117px;
+    color: $white;
+    @include text-preset-3;
+    padding: 9px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: rgba(#fff, 0.25);
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.trending-class,
+.img-box {
+  &:hover {
+    .overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
 @media (min-width: 768px) {
-  .trending {
+  .trending-class {
     padding: 24px 21px;
 
     .info {
@@ -117,7 +182,7 @@
     }
   }
 
-  .img {
+  .img-box {
     height: 140px;
   }
   .info {
@@ -141,7 +206,7 @@
 }
 
 @media (min-width: 1024px) {
-  .img {
+  .img-box {
     height: 174px;
   }
 }

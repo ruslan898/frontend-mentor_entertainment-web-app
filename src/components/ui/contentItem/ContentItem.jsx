@@ -1,8 +1,9 @@
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import styles from './ContentItem.module.scss';
 import categoryMovie from '/src/assets/icon-category-movie.svg';
-import bookmarkIconEmpty from '/src/assets/icon-bookmark-empty.svg';
-import bookmarkIconFull from '/src/assets/icon-bookmark-full.svg';
+import BookmarkIconEmpty from '/src/assets/icon-bookmark-empty.svg?react';
+import BookmarkIconFull from '/src/assets/icon-bookmark-full.svg?react';
+import playIcon from '/src/assets/icon-play.svg';
 
 export default function ContentItem({
   variant,
@@ -18,6 +19,10 @@ export default function ContentItem({
     'trending-class': trendingClass,
     'bg-img': bgImg,
     'bookmark-btn': bookmarkBtn,
+    'bookmark-empty': bookmarkEmpty,
+    'bookmark-full': bookmarkFull,
+    overlay,
+    'overlay-btn': overlayBtn,
   } = styles;
 
   const {
@@ -41,18 +46,28 @@ export default function ContentItem({
 
   const trendingImage = windowWidth < 768 ? trending?.small : trending?.large;
 
-  const bookmarkIcon = isBookmarked ? bookmarkIconFull : bookmarkIconEmpty;
+  const bookmarkIcon = isBookmarked ? (
+    <BookmarkIconFull className={bookmarkFull} />
+  ) : (
+    <BookmarkIconEmpty className={bookmarkEmpty} />
+  );
 
   if (variant === 'trending') {
     return (
       <article className={`${contentItem} ${trendingClass}`}>
+        <div className={overlay}>
+          <button type="button" className={overlayBtn}>
+            <img src={playIcon} alt="Play icon" />
+            Play
+          </button>
+        </div>
         <button
           type="button"
           className={bookmarkBtn}
           aria-label="Add to bookmarked shows"
           onClick={() => onBookmarkedChange(id)}
         >
-          <img src={bookmarkIcon} alt="Bookmark icon" />
+          {bookmarkIcon}
         </button>
         <img
           src={trendingImage}
@@ -75,13 +90,19 @@ export default function ContentItem({
   return (
     <article className={contentItem}>
       <div className={imgBox}>
+        <div className={overlay}>
+          <button type="button" className={overlayBtn}>
+            <img src={playIcon} alt="Play icon" />
+            Play
+          </button>
+        </div>
         <button
           type="button"
           className={bookmarkBtn}
           aria-label="Add to bookmarked shows"
           onClick={() => onBookmarkedChange(id)}
         >
-          <img src={bookmarkIcon} alt="Bookmark icon" />
+          {bookmarkIcon}
         </button>
         <img src={regularimage} alt="A movie/TV series thumbnail" />
       </div>

@@ -7,8 +7,8 @@ import styles from './Layout.module.scss';
 
 export default function Layout() {
   const { app, 'main-content': mainContent } = styles;
-
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -32,14 +32,22 @@ export default function Layout() {
     });
   }
 
-  console.log(data);
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+
+  function filterSearch(arr) {
+    return arr.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()),
+    );
+  }
 
   return (
-    <div className={app}>
+    <div className={app} searchVal={search}>
       <Header />
       <main className={mainContent}>
-        <Searchbar />
-        <Outlet context={{data, toggleBookmarked}} />
+        <Searchbar handleSearch={handleSearch} />
+        <Outlet context={{ data, toggleBookmarked, search, filterSearch }} />
       </main>
     </div>
   );

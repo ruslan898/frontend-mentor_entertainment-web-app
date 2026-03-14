@@ -21,6 +21,7 @@
     border-bottom: 1px solid transparent;
     color: $white;
     @include text-preset-2-mobile;
+    caret-color: $red-500;
 
     &:focus {
       border-color: $blue-500;

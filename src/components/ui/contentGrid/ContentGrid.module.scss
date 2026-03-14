@@ -13,13 +13,18 @@
   gap: 16px;
   overflow-x: auto;
   scrollbar-width: thin;
-  // scrollbar-width: none;
-  // -ms-overflow-style: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  user-select: none;
 }
 
-// .trending-grid::-webkit-scrollbar {
-//   display: none;
-// }
+.trending-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.trending-grid:active {
+  cursor: grabbing;
+}
 
 :global(.grid-wrapper) {
   display: flex;
@@ -50,7 +55,7 @@
 
   .content-grid {
     padding-right: 36px;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px 40px;
   }
 

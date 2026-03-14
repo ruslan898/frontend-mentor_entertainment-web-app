@@ -28,11 +28,21 @@
       width: 16px;
       height: 16px;
 
+      &:hover {
+        .menu-icon path {
+          fill: $red-500;
+        }
+      }
+
       &.active {
         .menu-icon path {
           fill: $white;
         }
       }
+    }
+
+    &-icon path {
+      transition: 0.2s all;
     }
   }
 
