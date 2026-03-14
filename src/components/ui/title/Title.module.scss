@@ -1,0 +1,33 @@
+@use '/src/sass/variables.scss' as *;
+@use '/src/sass/mixins.scss' as *;
+
+.title {
+  color: $white;
+  @include text-preset-1-mobile;
+}
+
+:global(.grid-wrapper) {
+  .title {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    @include text-preset-1;
+  }
+
+  :global(.grid-wrapper) {
+    .title {
+      padding: 0 25px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  :global(.grid-wrapper) {
+    .title {
+      padding: 0;
+    }
+  }
+}

@@ -2,18 +2,30 @@
 @use '/src/sass/mixins.scss' as *;
 
 .content-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.trending {
+.trending-class {
+  position: relative;
   padding: 14px 16px;
   width: 100%;
   height: 100%;
-  background-color: gray;
   justify-content: end;
   border-radius: 8px;
+  overflow: hidden;
+
+  .bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .info {
     @include text-preset-5-mobile;
@@ -23,12 +35,16 @@
   }
 }
 
-.img {
+.img-box {
   width: 100%;
   height: 110px;
-  background-color: gray;
-  border-radius: 8px;
-  overflow: hidden;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
 }
 .info {
   padding: 0;
@@ -66,6 +82,24 @@
   @include text-preset-4-mobile;
 }
 
+.bookmark-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 @media (min-width: 768px) {
   .trending {
     padding: 24px 21px;
@@ -75,6 +109,11 @@
     }
     .title {
       @include text-preset-2-medium;
+    }
+
+    .bookmark-btn {
+      top: 16px;
+      right: 24px;
     }
   }
 
@@ -93,6 +132,11 @@
   }
   .title {
     @include text-preset-3;
+  }
+
+  .bookmark-btn {
+    top: 16px;
+    right: 16px;
   }
 }
 

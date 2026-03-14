@@ -21,6 +21,12 @@
 //   display: none;
 // }
 
+:global(.grid-wrapper) {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 @media (min-width: 768px) {
   .content-grid {
     padding: 0 25px;
@@ -50,5 +56,9 @@
 
   .trending-grid {
     padding-right: 36px;
+  }
+
+  :global(.grid-wrapper) {
+    gap: 32px;
   }
 }
