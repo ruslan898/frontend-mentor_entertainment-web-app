@@ -1,55 +1,36 @@
-import { useOutletContext } from 'react-router';
-import ContentGrid from '../components/ui/contentGrid/ContentGrid';
-import ContentItem from '../components/ui/contentItem/ContentItem';
-import Title from '../components/ui/title/Title';
+import { useEntertainmentContext } from '../components/hooks/useEntertainmentContext';
+import ContentSection from '../components/ui/contentSection/ContentSection';
 import SearchResults from '../components/layout/searchResults/SearchResults';
+import {
+  filterBySearch,
+  selectBookmarkedMovies,
+  selectBookmarkedTVSeries,
+} from '../features/entertainment/selectors/entertainmentSelectors';
 
 export default function Bookmarked() {
-  const { data, toggleBookmarked, search, filterSearch } = useOutletContext();
+  const { data, toggleBookmarked, search } = useEntertainmentContext();
 
-  const bookmarkedMovies = data.filter(
-    (item) => item.category === 'Movie' && item.isBookmarked === true,
-  );
-
-  const bookmarkedTVSeries = data.filter(
-    (item) => item.category === 'TV Series' && item.isBookmarked === true,
-  );
-
-  const searchFiltered = filterSearch([
-    ...bookmarkedMovies,
-    ...bookmarkedTVSeries,
-  ]);
+  const bookmarkedMovies = selectBookmarkedMovies(data);
+  const bookmarkedTVSeries = selectBookmarkedTVSeries(data);
+  const bookmarkedContent = [...bookmarkedMovies, ...bookmarkedTVSeries];
+  const searchFiltered = filterBySearch(bookmarkedContent, search);
 
   return search.length < 1 ? (
     <>
       {bookmarkedMovies.length > 0 && (
-        <section className="grid-wrapper">
-          <Title>Bookmarked Movies</Title>
-          <ContentGrid>
-            {bookmarkedMovies.map((item) => (
-              <ContentItem
-                data={item}
-                onBookmarkedChange={toggleBookmarked}
-                key={item.id}
-              />
-            ))}
-          </ContentGrid>
-        </section>
+        <ContentSection
+          title="Bookmarked Movies"
+          items={bookmarkedMovies}
+          onBookmarkedChange={toggleBookmarked}
+        />
       )}
 
       {bookmarkedTVSeries.length > 0 && (
-        <section className="grid-wrapper">
-          <Title>Bookmarked TV Series</Title>
-          <ContentGrid>
-            {bookmarkedTVSeries.map((item) => (
-              <ContentItem
-                data={item}
-                onBookmarkedChange={toggleBookmarked}
-                key={item.id}
-              />
-            ))}
-          </ContentGrid>
-        </section>
+        <ContentSection
+          title="Bookmarked TV Series"
+          items={bookmarkedTVSeries}
+          onBookmarkedChange={toggleBookmarked}
+        />
       )}
 
       {bookmarkedTVSeries.length === 0 && bookmarkedMovies.length === 0 && (
@@ -60,7 +41,7 @@ export default function Bookmarked() {
     <SearchResults
       searchFiltered={searchFiltered}
       search={search}
-      toggleBookmarked={toggleBookmarked}
+      onBookmarkedChange={toggleBookmarked}
     />
   );
 }

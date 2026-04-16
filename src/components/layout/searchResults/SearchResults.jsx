@@ -5,7 +5,7 @@ import ContentItem from '../../ui/contentItem/ContentItem';
 export default function SearchResults({
   searchFiltered,
   search,
-  toggleBookmarked,
+  onBookmarkedChange,
 }) {
   return (
     <section className="grid-wrapper">
@@ -16,7 +16,7 @@ export default function SearchResults({
         {searchFiltered.map((item) => (
           <ContentItem
             data={item}
-            onBookmarkedChange={toggleBookmarked}
+            onBookmarkedChange={onBookmarkedChange}
             key={item.id}
           />
         ))}

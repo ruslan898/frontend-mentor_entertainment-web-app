@@ -1,33 +1,28 @@
-import { useOutletContext } from 'react-router';
-import ContentGrid from '../components/ui/contentGrid/ContentGrid';
-import ContentItem from '../components/ui/contentItem/ContentItem';
-import Title from '../components/ui/title/Title';
+import { useEntertainmentContext } from '../components/hooks/useEntertainmentContext';
+import ContentSection from '../components/ui/contentSection/ContentSection';
 import SearchResults from '../components/layout/searchResults/SearchResults';
+import {
+  filterBySearch,
+  selectTVSeries,
+} from '../features/entertainment/selectors/entertainmentSelectors';
 
 export default function TVSeries() {
-  const { data, toggleBookmarked, search, filterSearch } = useOutletContext();
+  const { data, toggleBookmarked, search } = useEntertainmentContext();
 
-  const tvSeries = data.filter((item) => item.category === 'TV Series');
-  const searchFiltered = filterSearch(tvSeries);
+  const tvSeries = selectTVSeries(data);
+  const searchFiltered = filterBySearch(tvSeries, search);
 
   return search.length < 1 ? (
-    <section className="grid-wrapper">
-      <Title>TV Series</Title>
-      <ContentGrid>
-        {tvSeries.map((item) => (
-          <ContentItem
-            data={item}
-            onBookmarkedChange={toggleBookmarked}
-            key={item.id}
-          />
-        ))}
-      </ContentGrid>
-    </section>
+    <ContentSection
+      title="TV Series"
+      items={tvSeries}
+      onBookmarkedChange={toggleBookmarked}
+    />
   ) : (
     <SearchResults
       searchFiltered={searchFiltered}
       search={search}
-      toggleBookmarked={toggleBookmarked}
+      onBookmarkedChange={toggleBookmarked}
     />
   );
 }
