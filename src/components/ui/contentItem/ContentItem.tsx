@@ -4,12 +4,13 @@ import categoryMovie from '/src/assets/icon-category-movie.svg';
 import BookmarkIconEmpty from '/src/assets/icon-bookmark-empty.svg?react';
 import BookmarkIconFull from '/src/assets/icon-bookmark-full.svg?react';
 import playIcon from '/src/assets/icon-play.svg';
+import type { ContentItemProps } from '../../../types/models';
 
 export default function ContentItem({
   variant,
-  data = {},
+  data,
   onBookmarkedChange,
-}) {
+}: ContentItemProps) {
   const {
     'content-item': contentItem,
     'img-box': imgBox,
@@ -27,7 +28,7 @@ export default function ContentItem({
 
   const {
     title,
-    thumbnail: { trending = {}, regular } = {},
+    thumbnail: { trending, regular } = {},
     year,
     category,
     rating,
@@ -39,10 +40,10 @@ export default function ContentItem({
 
   const regularimage =
     windowWidth < 768
-      ? regular.small
+      ? regular?.small
       : windowWidth < 1024
-        ? regular.medium
-        : regular.large;
+        ? regular?.medium
+        : regular?.large;
 
   const trendingImage = windowWidth < 768 ? trending?.small : trending?.large;
 

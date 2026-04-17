@@ -1,4 +1,4 @@
-import Menubar from '../../ui/menubar/Menubar'
+import Menubar from '../../ui/menubar/Menubar';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import styles from './Header.module.scss';
 

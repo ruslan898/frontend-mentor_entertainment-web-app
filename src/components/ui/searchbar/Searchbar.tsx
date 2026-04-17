@@ -1,7 +1,8 @@
 import styles from './Searchbar.module.scss';
 import searchIcon from '/src/assets/icon-search.svg';
+import type { SearchbarProps } from '../../../types/models';
 
-export default function Searchbar({handleSearch, searchVal}) {
+export default function Searchbar({ handleSearch, searchVal }: SearchbarProps) {
   const { searchbar, 'searchbar-input': searchbarInput } = styles;
 
   return (
@@ -9,7 +10,7 @@ export default function Searchbar({handleSearch, searchVal}) {
       <img src={searchIcon} alt="Search icon" />
       <input
         type="text"
-        name='name'
+        name="name"
         placeholder="Search for movies or TV series"
         className={searchbarInput}
         onChange={handleSearch}

@@ -2,6 +2,7 @@
 @use '/src/sass/mixins.scss' as *;
 
 .content-item {
+  max-width: 470px;
   position: relative;
   display: flex;
   flex-direction: column;

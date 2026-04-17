@@ -3,21 +3,30 @@ import ContentSection from '../components/ui/contentSection/ContentSection';
 import SearchResults from '../components/layout/searchResults/SearchResults';
 import {
   filterBySearch,
-  selectTVSeries,
+  selectTrending,
 } from '../features/entertainment/selectors/entertainmentSelectors';
 
-export default function TVSeries() {
+export default function Homepage() {
   const { data, toggleBookmarked, search } = useEntertainmentContext();
 
-  const tvSeries = selectTVSeries(data);
-  const searchFiltered = filterBySearch(tvSeries, search);
+  const trendingShows = selectTrending(data);
+  const searchFiltered = filterBySearch(data, search);
 
   return search.length < 1 ? (
-    <ContentSection
-      title="TV Series"
-      items={tvSeries}
-      onBookmarkedChange={toggleBookmarked}
-    />
+    <>
+      <ContentSection
+        title="Trending"
+        items={trendingShows}
+        variant="trending"
+        onBookmarkedChange={toggleBookmarked}
+      />
+      <ContentSection
+        title="Recommended for you"
+        items={data}
+        variant="default"
+        onBookmarkedChange={toggleBookmarked}
+      />
+    </>
   ) : (
     <SearchResults
       searchFiltered={searchFiltered}

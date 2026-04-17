@@ -16,6 +16,7 @@ export default function Movies() {
     <ContentSection
       title="Movies"
       items={movies}
+      variant="default"
       onBookmarkedChange={toggleBookmarked}
     />
   ) : (

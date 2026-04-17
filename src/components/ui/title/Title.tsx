@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import styles from './Title.module.scss';
+import type { TitleProps } from '../../../types/models';
 
-export default function Title({ type = 'h2', children, className }) {
+export default function Title({ type, children, className }: TitleProps) {
   const { title } = styles;
   const classes = clsx(title, className);
 
