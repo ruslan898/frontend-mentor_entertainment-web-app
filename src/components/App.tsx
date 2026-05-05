@@ -4,6 +4,7 @@ import Homepage from '../pages/Homepage';
 import Movies from '../pages/Movies';
 import TVSeries from '../pages/TVSeries';
 import Bookmarked from '../pages/Bookmarked';
+import NotFound from '../pages/NotFound';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="movies" element={<Movies />} />
         <Route path="tv-series" element={<TVSeries />} />
         <Route path="bookmarked" element={<Bookmarked />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
