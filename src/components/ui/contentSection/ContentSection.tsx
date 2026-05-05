@@ -1,9 +1,14 @@
 import Title from '../title/Title';
 import ContentGrid from '../contentGrid/ContentGrid';
 import ContentItem from '../contentItem/ContentItem';
-import type { ContentSectionProps } from '../../../types/models';
+import type { EntertainmentShow } from '../../../types/models';
 
-
+interface ContentSectionProps {
+  title: string;
+  items: EntertainmentShow[];
+  variant: 'default' | 'trending';
+  onBookmarkedChange: (id: string) => void;
+}
 
 export default function ContentSection({
   title,

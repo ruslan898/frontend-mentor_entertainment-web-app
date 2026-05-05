@@ -1,6 +1,13 @@
 import { Children, cloneElement, useRef, isValidElement } from 'react';
+import type { ReactElement } from 'react';
 import styles from './ContentGrid.module.scss';
-import type { ContentGridProps } from '../../../types/models';
+
+type ContentGridChild = ReactElement<{ variant: 'default' | 'trending' }>;
+
+interface ContentGridProps {
+  variant: 'default' | 'trending';
+  children: ContentGridChild | ContentGridChild[];
+}
 
 export default function ContentGrid({ variant, children }: ContentGridProps) {
   const { 'content-grid': contentGrid, 'trending-grid': trendingGrid } = styles;
@@ -13,13 +20,13 @@ export default function ContentGrid({ variant, children }: ContentGridProps) {
   });
 
   const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>): void => {
-    if (!ref.current) return
+    if (!ref.current) return;
     drag.current.isDown = true;
     drag.current.startX = e.pageX - ref.current.offsetLeft;
     drag.current.scrollLeft = ref.current.scrollLeft;
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>):void => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>): void => {
     if (!drag.current.isDown || !ref.current) return;
 
     const x = e.pageX - ref.current.offsetLeft;
@@ -37,11 +44,13 @@ export default function ContentGrid({ variant, children }: ContentGridProps) {
         onMouseUp={() => (drag.current.isDown = false)}
         onMouseLeave={() => (drag.current.isDown = false)}
       >
-        {Children.map(children, (child) => (
-          isValidElement(child) ?
+        {Children.map(children, (child) =>
+          isValidElement(child) ? (
             <li>{cloneElement(child, { variant: 'trending' })}</li>
-            : <li>{child}</li>
-        ))}
+          ) : (
+            <li>{child}</li>
+          ),
+        )}
       </ul>
     );
   }

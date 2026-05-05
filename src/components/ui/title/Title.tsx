@@ -1,6 +1,11 @@
 import clsx from 'clsx';
 import styles from './Title.module.scss';
-import type { TitleProps } from '../../../types/models';
+
+interface TitleProps {
+  type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  children: React.ReactNode;
+  className?: string;
+}
 
 export default function Title({ type, children, className }: TitleProps) {
   const { title } = styles;

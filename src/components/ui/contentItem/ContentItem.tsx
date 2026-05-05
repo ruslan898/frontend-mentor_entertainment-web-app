@@ -4,7 +4,13 @@ import categoryMovie from '/src/assets/icon-category-movie.svg';
 import BookmarkIconEmpty from '/src/assets/icon-bookmark-empty.svg?react';
 import BookmarkIconFull from '/src/assets/icon-bookmark-full.svg?react';
 import playIcon from '/src/assets/icon-play.svg';
-import type { ContentItemProps } from '../../../types/models';
+import type { EntertainmentShow } from '../../../types/models';
+
+interface ContentItemProps {
+  variant: 'default' | 'trending';
+  data: EntertainmentShow;
+  onBookmarkedChange: (id: string) => void;
+}
 
 export default function ContentItem({
   variant,

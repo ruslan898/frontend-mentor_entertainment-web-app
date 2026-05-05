@@ -21,7 +21,7 @@ export default function Bookmarked() {
         <ContentSection
           title="Bookmarked Movies"
           items={bookmarkedMovies}
-          variant='regular'
+          variant="default"
           onBookmarkedChange={toggleBookmarked}
         />
       )}
@@ -30,7 +30,7 @@ export default function Bookmarked() {
         <ContentSection
           title="Bookmarked TV Series"
           items={bookmarkedTVSeries}
-          variant='regular'
+          variant="default"
           onBookmarkedChange={toggleBookmarked}
         />
       )}

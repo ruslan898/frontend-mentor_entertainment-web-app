@@ -1,6 +1,10 @@
 import styles from './Searchbar.module.scss';
 import searchIcon from '/src/assets/icon-search.svg';
-import type { SearchbarProps } from '../../../types/models';
+
+interface SearchbarProps {
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement, Element>) => void;
+  searchVal: string;
+}
 
 export default function Searchbar({ handleSearch, searchVal }: SearchbarProps) {
   const { searchbar, 'searchbar-input': searchbarInput } = styles;
