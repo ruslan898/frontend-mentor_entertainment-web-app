@@ -1,5 +1,3 @@
-import type { ReactElement } from 'react';
-
 export interface EntertainmentShow {
   id: string;
   title: string;
